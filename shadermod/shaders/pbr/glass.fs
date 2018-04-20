@@ -87,7 +87,7 @@ void main()
 	}
 	ref /= 6.0;
   
-  color.rgb = mix(ref, lightambient, dot(lightnormal,viewnormal) );
+  color.rgb = mix(ref, lightambient, dot(lightnormal,viewnormal)*0.5+0.5 );
   
   
   
