@@ -1,0 +1,9 @@
+{
+  "shaders": {
+	"ui": {
+		"fs": "ui.fs",
+		"vs": "ui.vs"
+	}
+	
+  }
+}

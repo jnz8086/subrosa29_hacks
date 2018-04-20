@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="26">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"motorcycles!"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+
+define(car_replace,5) //Turbo S
+define(car_replace_m,car_replace*F6A0) //F6A0*car_replace
+
+{define(bike_box_right,(float)-0.55)
+define(bike_box_left,(float)-2.33)}
+define(bike_box_right,(float)-1.75)
+define(bike_box_left,(float)-2.5)
+
+define(bike_box_front,(float)-0.6)
+define(bike_box_back,(float)2.7)
+define(bike_box_height,(float)0.1)
+define(bike_suspension,(float)0.7)
+define(bike_price,3000)
+define(bike_weight,(float)500.0)
+//define(bike_seat1x,(float)-0.375)
+//define(bike_seat1y,(float)-0.375)
+
+
+define(vehicle_type0,subrosa.exe+B9C9C00)
+define(v0,subrosa.exe+8120940)
+define(p0,subrosa.exe+125EE140)
+define(ps,37C0)
+define(p_h,84)
+define(h0,subrosa.exe+431584)
+define(hs,3118)
+define(h_car,20)
+
+// /heli
+subrosa.exe+8C420:
+db car_replace
+
+//set stats
+
+alloc(mycode,1024)
+mycode:
+
+mov ebx,car_replace_m
+
+mov [ebx+vehicle_type0+30],bike_weight
+
+mov [ebx+vehicle_type0+54],bike_box_right
+mov [ebx+vehicle_type0+7C],bike_box_right
+mov [ebx+vehicle_type0+A4],bike_box_right
+mov [ebx+vehicle_type0+CC],bike_box_right
+mov [ebx+vehicle_type0+F4],bike_box_right
+mov [ebx+vehicle_type0+11C],bike_box_right
+mov [ebx+vehicle_type0+144],bike_box_right
+mov [ebx+vehicle_type0+16C],bike_box_right
+mov [ebx+vehicle_type0+194],bike_box_right
+mov [ebx+vehicle_type0+1BC],bike_box_right
+
+mov [ebx+vehicle_type0+40],bike_box_left
+mov [ebx+vehicle_type0+68],bike_box_left
+mov [ebx+vehicle_type0+90],bike_box_left
+mov [ebx+vehicle_type0+B8],bike_box_left
+mov [ebx+vehicle_type0+E0],bike_box_left
+mov [ebx+vehicle_type0+108],bike_box_left
+mov [ebx+vehicle_type0+130],bike_box_left
+mov [ebx+vehicle_type0+158],bike_box_left
+mov [ebx+vehicle_type0+180],bike_box_left
+mov [ebx+vehicle_type0+1A8],bike_box_left
+
+mov [ebx+vehicle_type0+C0],bike_box_back
+mov [ebx+vehicle_type0+D4],bike_box_back
+mov [ebx+vehicle_type0+160],bike_box_back
+mov [ebx+vehicle_type0+174],bike_box_back
+
+mov [ebx+vehicle_type0+48],bike_box_front
+mov [ebx+vehicle_type0+5C],bike_box_front
+mov [ebx+vehicle_type0+E8],bike_box_front
+mov [ebx+vehicle_type0+FC],bike_box_front
+
+mov [ebx+vehicle_type0+E4],bike_box_height
+mov [ebx+vehicle_type0+F8],bike_box_height
+mov [ebx+vehicle_type0+10C],bike_box_height
+mov [ebx+vehicle_type0+120],bike_box_height
+mov [ebx+vehicle_type0+134],bike_box_height
+mov [ebx+vehicle_type0+148],bike_box_height
+//todo
+
+mov [ebx+vehicle_type0+EB8C],bike_suspension
+mov [ebx+vehicle_type0+EBD0],bike_suspension
+mov [ebx+vehicle_type0+EC14],bike_suspension
+mov [ebx+vehicle_type0+EC58],bike_suspension
+
+mov [ebx+vehicle_type0+EB94],BEA8F5C3 //w1 x
+mov [ebx+vehicle_type0+EB98],BF666667 //w1 y
+mov [ebx+vehicle_type0+EB9C],BEB851EC //w1 z
+
+mov [ebx+vehicle_type0+EBD8],BEA8F5C3 //w2 x
+mov [ebx+vehicle_type0+EBDC],BF666667 //w2 y
+mov [ebx+vehicle_type0+EBE0],3F7D70A4 //w2 z
+
+mov [ebx+vehicle_type0+1350],0 //glass?
+mov [ebx+vehicle_type0+2C],bike_price
+mov byte [ebx+vehicle_type0+0C+00],'V'
+mov byte [ebx+vehicle_type0+0C+01],'y'
+mov byte [ebx+vehicle_type0+0C+02],'a'
+mov byte [ebx+vehicle_type0+0C+03],'t'
+mov byte [ebx+vehicle_type0+0C+04],'k'
+mov byte [ebx+vehicle_type0+0C+05],'a'
+mov byte [ebx+vehicle_type0+0C+06],0
+
+mov [ebx+vehicle_type0+F490],1 //seats
+//todo
+
+ret
+createthread(mycode)
+
+//make the renderer think our bike is a heli
+
+alloc(newmem_carskin,64)
+label(returnhere_carskin)
+label(originalcode_carskin)
+label(exit_carskin)
+
+newmem_carskin:
+mov ebx,[edi-40]
+mov edx,ebx
+cmp ebx,car_replace
+jne originalcode_carskin
+mov ebx,B
+
+originalcode_carskin:
+//mov ebx,[edi-40]
+mov [esp+24],eax
+
+exit_carskin:
+jmp returnhere_carskin
+
+"subrosa.exe"+5E29D:
+jmp newmem_carskin
+nop
+nop
+returnhere_carskin:
+
+
+//fix the wheels and heli blades
+
+alloc(newmem_carprops,32)
+label(returnhere_carprops)
+label(originalcode_carprops)
+label(exit_carprops)
+
+newmem_carprops:
+mov ebx,edx
+
+originalcode_carprops:
+mov [esp+28],ebx
+push 01
+
+exit_carprops:
+jmp returnhere_carprops
+
+"subrosa.exe"+5E2B9:
+jmp newmem_carprops
+nop
+returnhere_carprops:
+
+
+//only render 2 wheels
+
+alloc(newmem_2wheels,128)
+label(returnhere_2wheels)
+label(originalcode_2wheels)
+label(exit_2wheels)
+
+newmem_2wheels:
+cmp ecx,car_replace_m
+jne originalcode_2wheels
+cmp eax,3
+jmp returnhere_2wheels
+
+originalcode_2wheels:
+cmp eax,[ecx+subrosa.exe+B9D8770]
+  //jl subrosa.exe+5E350
+
+exit_2wheels:
+jmp returnhere_2wheels
+
+"subrosa.exe"+5E52E:
+jmp newmem_2wheels
+nop
+returnhere_2wheels:
+
+
+//fix the back wheel rotation
+
+alloc(newmem_2wheelsfix,128)
+label(returnhere_2wheelsfix)
+label(originalcode_2wheelsfix)
+label(exit_2wheelsfix)
+
+newmem_2wheelsfix:
+mov eax,[esp+64]
+mov ecx,[esp+5C]
+cmp ecx,car_replace_m
+jne returnhere_2wheelsfix
+cmp eax,0
+jg returnhere_2wheelsfix
+inc eax
+add ebx,98
+
+originalcode_2wheelsfix:
+//mov eax,[esp+64]
+//mov ecx,[esp+5C]
+
+exit_2wheelsfix:
+jmp returnhere_2wheelsfix
+
+"subrosa.exe"+5E515:
+jmp newmem_2wheelsfix
+nop
+nop
+nop
+returnhere_2wheelsfix:
+
+
+//crashing into objects on the map
+
+alloc(newmem_carcrash,128)
+label(returnhere_carcrash)
+label(originalcode_carcrash)
+label(exit_carcrash)
+
+newmem_carcrash:
+cmp [esi+v0+4],car_replace
+jne originalcode_carcrash
+cmp [esp+1C],F
+jl originalcode_carcrash
+push ebx
+mov ebx,[esi+v0+14]
+imul ebx,hs
+mov [ebx+h0+h_car],-1
+pop ebx
+
+originalcode_carcrash:
+  //sub eax,[esp+1C]
+mov [esi+subrosa.exe+812094C],eax
+
+exit_carcrash:
+jmp returnhere_carcrash
+
+"subrosa.exe"+404C0:
+jmp newmem_carcrash
+nop
+returnhere_carcrash:
+
+
+[DISABLE]
+dealloc(newmem_carcrash)
+"subrosa.exe"+404C0:
+mov [esi+subrosa.exe+812094C],eax
+//Alt: db 89 86 4C 09 41 09
+
+dealloc(newmem_2wheelsfix)
+"subrosa.exe"+5E515:
+mov eax,[esp+64]
+mov ecx,[esp+5C]
+//Alt: db 8B 44 24 64 8B 4C 24 5C
+dealloc(mycode)
+
+dealloc(newmem_2wheels)
+"subrosa.exe"+5E52E:
+cmp eax,[ecx+subrosa.exe+B9D8770]
+//Alt: db 3B 81 70 87 58 0C
+
+dealloc(newmem_carprops)
+"subrosa.exe"+5E2B9:
+mov [esp+28],ebx
+push 01
+//Alt: db 89 5C 24 28 6A 01
+
+dealloc(newmem_carskin)
+"subrosa.exe"+5E29D:
+mov ebx,[edi-40]
+mov [esp+24],eax
+//Alt: db 8B 5F C0 89 44 24 24
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"sawed off"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(sawedoff_replace,6)
+
+define(it0,subrosa.exe+20AA8CC8)
+define(its,AFC)
+define(it_delay,8)
+define(it_bt,C)
+define(it_cap,14)
+define(it_recoil,18)
+
+define(h0,subrosa.exe+431584)
+define(hs,3118)
+define(h_vx,160)
+//define(h_vx,19C)
+
+define(b0,subrosa.exe+24D420)
+define(bs,5C)
+define(b_vx,2C)
+
+//-----
+
+alloc(sawedoff,1024)
+sawedoff:
+  mov eax,sawedoff_replace
+  imul eax,its
+
+    mov [it0+eax+it_bt],3
+    mov [it0+eax+it_delay],30
+    mov [it0+eax+its+it_cap],2
+    mov [it0+eax+its+it_recoil],(float)40.0
+
+    mov byte [it0+eax+20], 'S'
+    mov byte [it0+eax+21], 'a'
+    mov byte [it0+eax+22], 'w'
+    mov byte [it0+eax+23], 'e'
+    mov byte [it0+eax+24], 'd'
+    mov byte [it0+eax+25], '-'
+    mov byte [it0+eax+26], 'o'
+    mov byte [it0+eax+27], 'f'
+    mov byte [it0+eax+28], 'f'
+    mov byte [it0+eax+29], 0
+
+    mov byte [it0+eax+its+20], 1+30
+    mov byte [it0+eax+its+21], 2+30
+    mov byte [it0+eax+its+22], '-'
+    mov byte [it0+eax+its+23], 'G'
+    mov byte [it0+eax+its+24], 'a'
+    mov byte [it0+eax+its+25], 'u'
+    mov byte [it0+eax+its+26], 'g'
+    mov byte [it0+eax+its+27], 'e'
+    mov byte [it0+eax+its+28], 0
+
+ret
+createthread(sawedoff)
+
+//---- getting shot --------------
+
+alloc(newmem,1024)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+
+mov eax,[esp+20]
+imul eax,bs
+lea eax,[b0+eax]
+cmp [eax],3
+jne originalcode
+
+push (float)0.4
+
+fld [edi+h0+h_vx+0]
+fmul [esp]
+fadd [esp+34+0]
+//fadd [eax+b_vx+0]
+fstp [edi+h0+h_vx+0]
+
+fld [edi+h0+h_vx+4]
+fmul [esp]
+fabs
+fadd [esp+34+4]
+//fadd [eax+b_vx+4]
+fstp [edi+h0+h_vx+4]
+
+fld [edi+h0+h_vx+8]
+fmul [esp]
+fadd [esp+34+8]
+//fadd [eax+b_vx+8]
+fstp [edi+h0+h_vx+8]
+
+add esp,4
+
+originalcode:
+sub [edi+subrosa.exe+4315B8],ebx
+
+exit:
+jmp returnhere
+
+"subrosa.exe"+8B941:
+jmp newmem
+nop
+returnhere:
+
+
+
+
+ 
+[DISABLE]
+dealloc(newmem)
+"subrosa.exe"+8B941:
+sub [edi+subrosa.exe+4315B8],ebx
+//Alt: db 29 9F B8 15 65 01
+
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+
+  </Structures>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>

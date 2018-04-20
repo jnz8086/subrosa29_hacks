@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="26">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"shadermod"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+
+
+define(glGetError,[subrosa.exe+20BC4D6C])
+    registersymbol(glGetError)
+define(glGenBuffers,[subrosa.exe+7E55C0])
+    registersymbol(glGenBuffers)
+define(glBindBuffer,[subrosa.exe+216393F4])
+    registersymbol(glBindBuffer)
+  define(glCreateShader,[subrosa.exe+19422F20])
+      registersymbol(glCreateShader)
+  define(glShaderSource,[subrosa.exe+2D85E53C])
+      registersymbol(glShaderSource)
+  define(glCompileShader,[subrosa.exe+221FF9E8])
+      registersymbol(glCompileShader)
+  define(glGetShaderiv,[subrosa.exe+20A98454])
+      registersymbol(glGetShaderiv)
+  define(glGetShaderInfoLog,[subrosa.exe+C932304])
+      registersymbol(glGetShaderInfoLog)
+define(glCreateProgram,[subrosa.exe+20BC4D78])
+    registersymbol(glCreateProgram)
+define(glAttachShader,[subrosa.exe+C17EC50])
+    registersymbol(glAttachShader)
+define(glLinkProgram,[subrosa.exe+124A4EC0])
+    registersymbol(glLinkProgram)
+define(glUseProgram,[subrosa.exe+A98445C])
+    registersymbol(glUseProgram)
+define(glGetProgramiv,[subrosa.exe+19392828])
+    registersymbol(glGetProgramiv)
+define(glGetProgramInfoLog,[subrosa.exe+28D12DA0])
+    registersymbol(glGetProgramInfoLog)
+  define(glEnableVertexAttribArray,[subrosa.exe+7E55DC])
+      registersymbol(glEnableVertexAttribArray)
+  define(glBindVertexArray,[subrosa.exe+C8BEC9C])
+      registersymbol(glBindVertexArray)
+  define(glVertexAttribPointer,[subrosa.exe+9C58D94])
+      registersymbol(glVertexAttribPointer)
+  define(glGetAttribLocation,[subrosa.exe+11EC3500])
+      registersymbol(glGetAttribLocation)
+  define(glGetUniformLocation,[subrosa.exe+2D6D0CB8])
+      registersymbol(glGetUniformLocation)
+define(glUniform1f,[subrosa.exe+8378AC])
+    registersymbol(glUniform1f)
+define(glUniform1fv,[subrosa.exe+902710C])
+    registersymbol(glUniform1fv)
+define(glUniform2fv,[subrosa.exe+20B58D00])
+    registersymbol(glUniform2fv)
+define(glUniform3fv,[subrosa.exe+90270FC])
+    registersymbol(glUniform3fv)
+define(glUniform1i,[subrosa.exe+9C58D84])
+    registersymbol(glUniform1i)
+define(glUniformMatrix4fv,[subrosa.exe+A9C44A4])
+    registersymbol(glUniformMatrix4fv)
+  define(glGenTextures,[subrosa.exe+215362A0])
+      registersymbol(glGenTextures)
+  define(glActiveTexture,[subrosa.exe+3985C514])
+      registersymbol(glActiveTexture)
+  define(glBindTexture,[subrosa.exe+C8BEC98])
+      registersymbol(glBindTexture)
+  define(glTexParameteri,[subrosa.exe+7C3DB8])
+      registersymbol(glTexParameteri)
+  define(glTexImage2D,[subrosa.exe+31C82960])
+      registersymbol(glTexImage2D)
+  define(glGenerateMipmap,[subrosa.exe+20BBA0])
+      registersymbol(glGenerateMipmap)
+  define(glSamplerParameterf,[subrosa.exe+9CD2DE0])
+      registersymbol(glSamplerParameterf)
+define(glDrawElementsBaseVertex,[subrosa.exe+C8BED5C])
+    registersymbol(glDrawElementsBaseVertex)
+
+
+define(shader_city,subrosa.exe+200E80) //4
+define(shader_city_lod,subrosa.exe+200ED4) //8
+define(shader_glass,subrosa.exe+200F28) //C
+define(shader_objects,subrosa.exe+200F7C) //10
+define(shader_people,subrosa.exe+200FD0) //14
+define(shader_depth,subrosa.exe+201024) //18
+define(shader_sky,subrosa.exe+201078) //1C
+define(shader_blur,subrosa.exe+2010CC) //unused? 20
+define(shader_scatter,subrosa.exe+201120) //24
+define(shader_shadowmap,subrosa.exe+201174) //28
+define(shader_ui,subrosa.exe+200DAA80) //1
+
+define(uniform_city_texcolor,subrosa.exe+200EC4)     //0
+define(uniform_city_texshadowmap,subrosa.exe+200EC8) //1
+define(uniform_city_texgloss,subrosa.exe+200ECC)     //2
+define(uniform_city_texcubemap,subrosa.exe+200ED0)   //3
+
+
+define(uniform_glass_texcubemap,subrosa.exe+200F70)
+
+registersymbol(shader_city)
+registersymbol(shader_glass)
+registersymbol(shader_objects)
+registersymbol(shader_people)
+registersymbol(shader_depth)
+registersymbol(shader_sky)
+registersymbol(shader_blur)
+registersymbol(shader_scatter)
+registersymbol(shader_shadowmap)
+registersymbol(shader_ui)
+
+define(keys_now,subrosa.exe+8C68960)
+define(keys_last,subrosa.exe+836460)
+
+define(func_loadbitmap,subrosa.exe+79EB0) //bool load_png_bitmap(char* path)
+define(bitmap_size,subrosa.exe+2DC7E8E0)
+define(bitmap_data,subrosa.exe+2DC7E8E8)
+
+alloc(shadermod_status,8192)
+registersymbol(shadermod_status)
+define(shadermod_loaded,shadermod_status)
+define(shadermod_sectable,shadermod_status+100)
+define(sectable_s,8)
+
+define(uniform_city_texpbr,shadermod_status+8)
+alloc(s_texpbr,16)
+s_texpbr:
+db 't' 'e' 'x' '_' 'p' 'b' 'r'
+
+define(uniform_objects_metallic,shadermod_status+C)
+alloc(s_metallic,16)
+s_metallic:
+db 'm' 'e' 't' 'a' 'l' 'l' 'i' 'c' 0
+
+alloc(tmpdata,65536)
+registersymbol(tmpdata)
+
+
+{
+subrosa.exe+9D9A8 - A1 48E4B422           - mov eax,[subrosa.exe+219EE448] // [00000209]
+subrosa.exe+9D9AD - 6B C0 70              - imul eax,eax,70
+subrosa.exe+9D9B0 - 8B 88 EC2DE729        - mov ecx,[eax+subrosa.exe+28D12DEC]
+subrosa.exe+9D9B6 - 51                    - push ecx
+subrosa.exe+9D9B7 - 68 13850000           - push 00008513 // 34067
+subrosa.exe+9D9BC - FF 15 98ECA10D        - call dword ptr [subrosa.exe+C8BEC98] //-&gt;OPENGL32.glBindTexture
+}
+
+
+//--------------------------------------------------------
+
+alloc(celua_name,16)
+celua_name:
+db 'C' 'E' 'L' 'U' 'A' 'S' 'E' 'R' 'V' 'E' 'R' 0
+
+loadlibrary(luaclient-i386.dll)
+luacall(openLuaServer('CELUASERVER'))
+define(CELUA_ServerName,celua_name)
+
+alloc(myluafunc_init,8)
+myluafunc_init:
+db 'i' 'n' 'i' 't' '(' ')' 0
+
+alloc(myluafunc_next,8)
+myluafunc_next:
+db 'n' 'e' 'x' 't' '(' ')' 0
+
+alloc(loadconfigfile,64)
+//createthread(loadconfigfile)
+loadconfigfile:
+    push 0
+    push myluafunc_init
+    call CELUA_ExecuteFunction
+  ret
+
+
+//----- resource injector ---------------------------------
+
+define(GL_FRAGMENT_SHADER,8B30)
+define(GL_VERTEX_SHADER,8B31)
+define(GL_GEOM_SHADER,8DD9)
+
+define(GL_COMPILE_STATUS,8B81)
+define(GL_LINK_STATUS,8B82)
+
+define(GL_TEXTURE_2D,DE1)
+define(GL_TEXTURE_CUBE_MAP,8513)
+ define(GL_TEXTURE0,84C0)
+  define(GL_TEXTURE_MAG_FILTER,2800)
+  define(GL_TEXTURE_MIN_FILTER,2801)
+ define(GL_NEAREST,2600)
+ define(GL_LINEAR,2601)
+ define(GL_NEAREST_MIPMAP_NEAREST,2700)
+ define(GL_LINEAR_MIPMAP_NEAREST,2701)
+ define(GL_NEAREST_MIPMAP_LINEAR,2702)
+ define(GL_LINEAR_MIPMAP_LINEAR,2703)
+  define(GL_TEXTURE_MIN_LOD,813A)
+  define(GL_TEXTURE_MAX_LOD,813B)
+  define(GL_MAX_TEXTURE_LOD_BIAS,84FD)
+  define(GL_TEXTURE_LOD_BIAS,8501)
+
+define(GL_RGB,1907)
+define(GL_RGBA,1908)
+define(GL_UNSIGNED_BYTE,1401)
+
+//define()
+
+define(shader_max,4000)
+
+
+alloc(shaderCheck,2048)
+shaderCheck:
+
+push eax
+push esp
+push GL_COMPILE_STATUS
+push [esp+10]
+call glGetShaderiv
+pop eax
+cmp eax,0
+jne shader_Check_ret
+
+push tmpdata+18
+push 0
+push #512
+push [esp+10]
+call glGetShaderInfoLog
+
+push 0
+push tmpdata+18
+push subrosa.exe+D80D0 // ["Error"]
+push 10
+call SDL2.SDL_ShowSimpleMessageBox
+add esp,10
+
+label(shader_Check_ret)
+shader_Check_ret:
+ret
+
+
+
+
+
+alloc(createTexture,2048)
+createTexture:
+
+push eax
+push esp
+push 1
+call glGenTextures
+
+push [esp]
+push GL_TEXTURE_2D
+call glBindTexture
+
+push bitmap_data
+push GL_UNSIGNED_BYTE
+push GL_RGBA
+push 0
+push [bitmap_size+4]
+push [bitmap_size]
+push GL_RGBA
+push 0
+push GL_TEXTURE_2D
+call glTexImage2D
+
+push GL_TEXTURE0
+call glActiveTexture
+
+push GL_LINEAR_MIPMAP_LINEAR
+push GL_TEXTURE_MAG_FILTER
+push GL_TEXTURE_2D
+call glTexParameteri
+
+push GL_LINEAR_MIPMAP_LINEAR
+push GL_TEXTURE_MIN_FILTER
+push GL_TEXTURE_2D
+call glTexParameteri
+
+push (float)-1.5
+push GL_TEXTURE_LOD_BIAS
+push GL_TEXTURE_2D
+call glTexParameterf
+
+{
+push (float)50.0
+push GL_MAX_TEXTURE_LOD_BIAS
+push GL_TEXTURE_2D
+call glTexParameterf
+}
+
+push GL_TEXTURE_2D
+call glGenerateMipmap
+
+pop eax
+ret
+
+
+
+
+
+
+//unregistersymbol(compileShaders)
+//globalalloc(compileShaders, 1024)
+alloc(compileShaders, 6000)
+compileShaders:
+
+call loadconfigfile
+
+label(cs_loop)
+cs_loop:
+
+  push 0
+  push myluafunc_next
+  call CELUA_ExecuteFunction
+
+cmp [tmpdata],0
+  je cs_end
+cmp [tmpdata],2
+  je cs_textures
+
+//----- shader creation ------------------
+
+lea ebp,[tmpdata+10]
+//push ebp
+
+push GL_VERTEX_SHADER
+call glCreateShader
+  //mov ebp,[esp]
+  mov [ebp+4],eax
+   mov ebx,[tmpdata+4]
+   mov [ebx+4],eax
+push ebp
+add [esp],8
+push 0
+push esp
+add [esp],4
+push 1
+push eax
+call glShaderSource
+  add esp,4
+  //mov ebp,[esp]
+mov eax,[ebp+4]
+push eax
+call glCompileShader
+  //mov ebp,[esp]
+
+   push [ebp+4]
+   call shaderCheck
+   add esp,4
+
+add ebp,shader_max
+
+push GL_FRAGMENT_SHADER
+call glCreateShader
+  //mov ebp,[esp]
+  mov [ebp+4],eax
+   mov ebx,[tmpdata+4]
+   mov [ebx+8],eax
+push ebp
+add [esp],8
+push 0
+push esp
+add [esp],4
+push 1
+push eax
+call glShaderSource
+  add esp,4
+  //mov ebp,[esp]
+mov eax,[ebp+4]
+push eax
+call glCompileShader
+  //mov ebp,[esp]
+//pop ebp
+
+   push [ebp+4]
+   call shaderCheck
+   add esp,4
+
+call glCreateProgram
+mov [tmpdata+8],eax
+
+push [tmpdata+10+4]
+push [tmpdata+8]
+call glAttachShader
+
+push [tmpdata+10+shader_max+4]
+push [tmpdata+8]
+call glAttachShader
+
+push [tmpdata+8]
+call glLinkProgram
+
+//=====
+push tmpdata
+push GL_LINK_STATUS
+push [tmpdata+8]
+call glGetProgramiv
+
+cmp [tmpdata],0
+jne cs_progerror
+
+push tmpdata+18
+push 0
+push #512
+push [tmpdata+8]
+call glGetProgramInfoLog
+
+push 0
+push tmpdata+18
+push subrosa.exe+D80D0 { ["Error"] }
+push 10
+call SDL2.SDL_ShowSimpleMessageBox
+add esp,10
+
+label(cs_progerror)
+cs_progerror:
+//======
+
+mov eax,[tmpdata+8]
+mov ebx,[tmpdata+4]
+mov [ebx],eax
+
+
+//------------------------
+mov eax,[tmpdata+4]
+
+cmp eax,shader_city
+je sh_city
+cmp eax,shader_glass
+je sh_glass
+cmp eax,shader_objects
+je sh_objects
+cmp eax,shader_ui
+jne cs_loop
+
+mov edx,[shader_ui]
+push edx
+call glUseProgram
+mov eax,[shader_ui]
+push subrosa.exe+D48B4 { ["modelviewprojectionmatrix"] }
+push eax
+call glGetUniformLocation
+mov ecx,[shader_ui]
+push subrosa.exe+D48A8 { ["tex_color"] }
+push ecx
+mov [subrosa.exe+200DAA94],eax { [00000000] }
+call glGetUniformLocation
+push 00 { 0 }
+push eax
+mov [subrosa.exe+200DAAB4],eax { [00000001] }
+call glUniform1i
+
+//push subrosa.exe+200DAB18 { [00000001] }
+//push 01 { 1 }
+//call dword ptr [subrosa.exe+B9C84E0] { -&gt;atioglxx.dll+19B66B8 } //glGenVertexArrays
+//push subrosa.exe+200DAB1C { [00000001] }
+//push 01 { 1 }
+//call dword ptr [subrosa.exe+7E55C0] { -&gt;atioglxx.dll+19B5C48 } //glGenBuffers
+//push subrosa.exe+200DAB14 { [00000801] }
+//push 01 { 1 }
+
+jmp cs_loop
+label(sh_city)
+sh_city:
+
+mov edx,[shader_city]
+push edx
+call glUseProgram
+
+{
+mov edx,[subrosa.exe+200EC4] tex_color     0
+mov eax,[subrosa.exe+200EC8] tex_shadowmap 1
+mov ecx,[subrosa.exe+200ECC] tex_gloss     2
+mov edx,[subrosa.exe+200ED0] tex_cubemap   3
+}
+
+mov ecx,[shader_city] { [00000004] }
+push subrosa.exe+D5A3C { ["ooresolution"] }
+push ecx
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov edx,[shader_city] { [00000004] }
+push subrosa.exe+D5A2C { ["viewposition"] }
+push edx
+mov [subrosa.exe+200E94],eax { [00000005] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov [subrosa.exe+200E98],eax { [00000008] }
+mov eax,[shader_city] { [00000004] }
+push subrosa.exe+D5A1C { ["atmoconstant"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov ecx,[shader_city] { [00000004] }
+push subrosa.exe+D5A0C { ["atmowavelength"] }
+push ecx
+mov [subrosa.exe+200E9C],eax { [FFFFFFFF] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov edx,[shader_city] { [00000004] }
+push subrosa.exe+D59FC { ["lightdirection"] }
+push edx
+mov [subrosa.exe+200EA0],eax { [FFFFFFFF] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov [subrosa.exe+200EA8],eax { [00000003] }
+mov eax,[shader_city] { [00000004] }
+push subrosa.exe+D59EC { ["isreflection"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov ecx,[shader_city] { [00000004] }
+push subrosa.exe+D59DC { ["planeposition"] }
+push ecx
+mov [subrosa.exe+200EAC],eax { [00000000] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov edx,[shader_city] { [00000004] }
+push subrosa.exe+D59D0 { ["planenormal"] }
+push edx
+mov [subrosa.exe+200EB0],eax { [00000007] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov [subrosa.exe+200EB4],eax { [00000006] }
+mov eax,[shader_city] { [00000004] }
+push subrosa.exe+D48B4 { ["modelviewprojectionmatrix"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov ecx,[shader_city] { [00000004] }
+push subrosa.exe+D59C0 { ["lightambient"] }
+push ecx
+mov [subrosa.exe+200EB8],eax { [00000004] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov edx,[shader_city] { [00000004] }
+push subrosa.exe+D59B0 { ["lightdiffuse"] }
+push edx
+mov [subrosa.exe+200EBC],eax { [00000001] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov [subrosa.exe+200EC0],eax { [00000002] }
+mov eax,[shader_city] { [00000004] }
+push subrosa.exe+D48A8 { ["tex_color"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov ecx,[shader_city] { [00000004] }
+push subrosa.exe+D59A0 { ["tex_shadowmap"] }
+push ecx
+mov [subrosa.exe+200EC4],eax { [00000009] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov edx,[shader_city] { [00000004] }
+push subrosa.exe+D5994 { ["tex_gloss"] }
+push edx
+mov [subrosa.exe+200EC8],eax { [0000000B] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov [subrosa.exe+200ECC],eax { [0000000A] }
+mov eax,[shader_city] { [00000004] }
+push subrosa.exe+D5988 { ["tex_cubemap"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;atioglxx.dll+19B5D78 }
+mov [subrosa.exe+200ED0],eax { [FFFFFFFF] }
+
+fild dword ptr [subrosa.exe+C8BECE0] { [000006F0] }
+fld1
+fld st(0)
+fdivrp st(2),st(0)
+mov edx,[subrosa.exe+200E94] { [00000005] }
+lea ecx,[esp+04]
+push ecx
+push 01 { 1 }
+push edx
+fxch st(1)
+fstp dword ptr [esp+10]
+fidiv dword ptr [subrosa.exe+C8BECE4] { [0.00] }
+fstp dword ptr [esp+14]
+call dword ptr [subrosa.exe+20B58D00] { -&gt;atioglxx.dll+19B5E28 }
+mov eax,[subrosa.exe+200E9C] { [FFFFFFFF] }
+push subrosa.exe+E5304 { [0.05] }
+push 01 { 1 }
+push eax
+call dword ptr [subrosa.exe+C8BEC88] { -&gt;atioglxx.dll+19B5E48 }
+mov ecx,[subrosa.exe+200EA0] { [FFFFFFFF] }
+push subrosa.exe+E5314 { [0.63] }
+push 01 { 1 }
+push ecx
+call dword ptr [subrosa.exe+90270FC] { -&gt;atioglxx.dll+19B5E38 }
+mov edx,[subrosa.exe+200EC4] { [00000009] }
+push 00 { 0 }
+push edx
+call dword ptr [subrosa.exe+9C58D84] { -&gt;atioglxx.dll+19B5DD8 }
+mov eax,[subrosa.exe+200EC8] { [0000000B] }
+push 01 { 1 }
+push eax
+call dword ptr [subrosa.exe+9C58D84] { -&gt;atioglxx.dll+19B5DD8 }
+mov ecx,[subrosa.exe+200ECC] { [0000000A] }
+push 02 { 2 }
+push ecx
+call dword ptr [subrosa.exe+9C58D84] { -&gt;atioglxx.dll+19B5DD8 }
+mov edx,[subrosa.exe+200ED0] { [FFFFFFFF] }
+push 03 { 3 }
+push edx
+call dword ptr [subrosa.exe+9C58D84] { -&gt;atioglxx.dll+19B5DD8 }
+
+
+
+
+mov eax,[shader_city]
+push s_texpbr
+push eax
+call glGetUniformLocation
+mov [uniform_city_texpbr],eax
+
+
+mov edx,[uniform_city_texpbr]
+push 04
+push edx
+call glUniform1i
+
+
+jmp cs_loop
+
+
+label(sh_glass)
+sh_glass:
+
+
+
+push subrosa.exe+D5A3C { ["ooresolution"] }
+push edx
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov [subrosa.exe+200F3C],eax { [FFFFFFFF] }
+mov eax,[shader_glass] { [000000A1] }
+push subrosa.exe+D5A2C { ["viewposition"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov ecx,[shader_glass] { [000000A1] }
+push subrosa.exe+D59FC { ["lightdirection"] }
+push ecx
+mov [subrosa.exe+200F40],eax { [00000003] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov edx,[shader_glass] { [000000A1] }
+push subrosa.exe+D48B4 { ["modelviewprojectionmatrix"] }
+push edx
+mov [subrosa.exe+200F50],eax { [00000001] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov [subrosa.exe+200F60],eax { [00000002] }
+mov eax,[shader_glass] { [000000A1] }
+push subrosa.exe+D59C0 { ["lightambient"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov ecx,[shader_glass] { [000000A1] }
+push subrosa.exe+D59B0 { ["lightdiffuse"] }
+push ecx
+mov [subrosa.exe+200F64],eax { [00000000] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov edx,[shader_glass] { [000000A1] }
+push subrosa.exe+D48A8 { ["tex_color"] }
+push edx
+mov [subrosa.exe+200F68],eax { [FFFFFFFF] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov [subrosa.exe+200F6C],eax { [00000004] }
+mov eax,[shader_glass] { [000000A1] }
+push subrosa.exe+D5988 { ["tex_cubemap"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov [subrosa.exe+200F70],eax { [00000005] }
+
+mov edx,[subrosa.exe+200F3C] { [FFFFFFFF] }
+fld st(0)
+lea ecx,[esp+04]
+fdivrp st(2),st(0)
+push ecx
+push 01 { 1 }
+push edx
+fxch st(1)
+fstp dword ptr [esp+10]
+fidiv dword ptr [subrosa.exe+C8BECE4] { [0.00] }
+fstp dword ptr [esp+14]
+call dword ptr [subrosa.exe+20B58D00] { -&gt;glUniform2fv }
+mov eax,[subrosa.exe+200F6C] { [00000004] }
+push 00 { 0 }
+push eax
+call dword ptr [subrosa.exe+9C58D84] { -&gt;glUniform1i }
+mov ecx,[subrosa.exe+200F70] { [00000005] }
+push 01 { 1 }
+push ecx
+call dword ptr [subrosa.exe+9C58D84] { -&gt;glUniform1i }
+
+push [subrosa.exe+28D12DEC+70*209]
+push GL_TEXTURE_CUBE_MAP
+call glBindTexture
+
+push GL_TEXTURE0+1
+call glActiveTexture
+
+jmp cs_loop
+
+
+
+label(sh_objects)
+sh_objects:
+
+mov edx,[shader_objects] { [000000CE] }
+push edx
+call dword ptr [subrosa.exe+A98445C] { -&gt;glUseProgram }
+mov eax,[shader_objects] { [000000CE] }
+push subrosa.exe+D5A3C { ["ooresolution"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov ecx,[shader_objects] { [000000CE] }
+push subrosa.exe+D5A2C { ["viewposition"] }
+push ecx
+mov [subrosa.exe+200F90],eax { [00000006] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov edx,[shader_objects] { [000000CE] }
+push subrosa.exe+D597C { ["objposition"] }
+push edx
+mov [subrosa.exe+200F94],eax { [00000007] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov [subrosa.exe+200F98],eax { [00000005] }
+mov eax,[shader_objects] { [000000CE] }
+push subrosa.exe+D596C { ["objorientation"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov ecx,[shader_objects] { [000000CE] }
+push subrosa.exe+D48B4 { ["modelviewprojectionmatrix"] }
+push ecx
+mov [subrosa.exe+200F9C],eax { [00000004] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov edx,[shader_objects] { [000000CE] }
+push subrosa.exe+D59FC { ["lightdirection"] }
+push edx
+mov [subrosa.exe+200FA0],eax { [00000003] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov [subrosa.exe+200FA4],eax { [00000002] }
+mov eax,[shader_objects] { [000000CE] }
+push subrosa.exe+D59C0 { ["lightambient"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov ecx,[shader_objects] { [000000CE] }
+push subrosa.exe+D59B0 { ["lightdiffuse"] }
+push ecx
+mov [subrosa.exe+200FA8],eax { [00000000] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov edx,[shader_objects] { [000000CE] }
+push subrosa.exe+D48A8 { ["tex_color"] }
+push edx
+mov [subrosa.exe+200FAC],eax { [00000001] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov [subrosa.exe+200FC0],eax { [00000008] }
+mov eax,[shader_objects] { [000000CE] }
+push subrosa.exe+D59A0 { ["tex_shadowmap"] }
+push eax
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+mov ecx,[shader_objects] { [000000CE] }
+push subrosa.exe+D5988 { ["tex_cubemap"] }
+push ecx
+mov [subrosa.exe+200FC4],eax { [00000009] }
+call dword ptr [subrosa.exe+2D6D0CB8] { -&gt;glGetUniformLocation }
+fild dword ptr [subrosa.exe+C8BECE0] { [00000640] }
+fld1
+lea edx,[esp+04]
+fld st(0)
+push edx
+fdivrp st(2),st(0)
+mov [subrosa.exe+200FC8],eax { [FFFFFFFF] }
+mov eax,[subrosa.exe+200F90] { [00000006] }
+push 01 { 1 }
+push eax
+fxch st(1)
+fstp dword ptr [esp+10]
+fidiv dword ptr [subrosa.exe+C8BECE4] { [0.00] }
+fstp dword ptr [esp+14]
+call dword ptr [subrosa.exe+20B58D00] { -&gt;glUniform2fv }
+mov ecx,[subrosa.exe+200FC0] { [00000008] }
+push 00 { 0 }
+push ecx
+call dword ptr [subrosa.exe+9C58D84] { -&gt;glUniform1i }
+mov edx,[subrosa.exe+200FC4] { [00000009] }
+push 01 { 1 }
+push edx
+call dword ptr [subrosa.exe+9C58D84] { -&gt;glUniform1i }
+push 02 { 2 }
+mov eax,[subrosa.exe+200FC8] { [FFFFFFFF] }
+push eax
+call dword ptr [subrosa.exe+9C58D84] { -&gt;glUniform1i }
+
+
+
+mov eax,[shader_objects]
+push s_metallic
+push eax
+call glGetUniformLocation
+mov [uniform_objects_metallic],eax
+
+
+
+jmp cs_loop
+
+
+//------------------------
+
+
+
+
+label(cs_textures)
+cs_textures:
+
+cmp byte [tmpdata+40],0
+je prim_skip
+
+push tmpdata+40
+call func_loadbitmap
+add esp,4
+call createTexture
+mov ebx,[tmpdata+8]
+imul ebx,70
+mov [subrosa.exe+28D12DEC+ebx],eax
+
+label(prim_skip)
+prim_skip:
+
+cmp [tmpdata+4],0
+je cs_loop
+
+{push tmpdata+C4
+call func_loadbitmap
+add esp,4
+call createTexture
+mov ebx,[tmpdata+8]
+imul ebx,sectable_s
+mov [shadermod_sectable+ebx],eax}
+
+mov ecx,[tmpdata+4]
+label(sec_loop)
+sec_loop:
+push ecx
+
+//lea ebx,[tmpdata+40+ecx*100]
+  imul ebx,ecx,100
+  add ebx,tmpdata+40
+push ebx
+call func_loadbitmap
+add esp,4
+call createTexture
+   pop ecx
+ mov ebx,[tmpdata+8]
+ imul ebx,sectable_s
+  lea edx,[ecx*4]
+  sub edx,4
+  add ebx,edx
+ mov [shadermod_sectable+ebx],eax
+loop sec_loop
+
+jmp cs_loop
+
+
+label(cs_end)
+cs_end:
+
+mov ebx,[shadermod_sectable+88*sectable_s]
+mov [subrosa.exe+28D12DEC+34F*70],ebx
+
+mov [shadermod_loaded],1
+
+ret
+registersymbol(compileShaders)
+
+
+//------ custom secondary textures -------------------------
+
+
+alloc(newmem_gloss1,2048)
+label(returnhere_gloss1)
+label(originalcode_gloss1)
+label(exit_gloss1)
+
+newmem_gloss1:
+
+/*
+mov ecx,[ebp*8+subrosa.exe+219ED424]
+imul ecx,ecx,70
+mov eax,[ecx+subrosa.exe+28D12DEC]
+*/
+
+cmp [shadermod_sectable+ebp*sectable_s],0 //ebp?
+je originalcode_gloss1
+
+push [shadermod_sectable+ebp*sectable_s]
+push 00000DE1
+call glBindTexture
+push GL_TEXTURE0+4
+call glActiveTexture
+
+push [shadermod_sectable+ebp*sectable_s+4]
+push 00000DE1
+jmp returnhere_gloss1
+
+
+originalcode_gloss1:
+
+       push [shadermod_sectable+sectable_s*1]
+       push 00000DE1
+       call glBindTexture
+       push GL_TEXTURE0+4
+       call glActiveTexture
+
+//push edx
+       push [shadermod_sectable+sectable_s*1+4]
+push 00000DE1
+
+exit_gloss1:
+jmp returnhere_gloss1
+
+"subrosa.exe"+45B87:
+jmp newmem_gloss1
+nop
+returnhere_gloss1:
+
+
+
+
+{
+alloc(newmem_gloss2,1024)
+label(returnhere_gloss2)
+label(originalcode_gloss2)
+label(exit_gloss2)
+
+newmem_gloss2:
+
+push 0//[shadermod_sectable+ebp*sectable_s]
+push 00000DE1
+call glBindTexture
+
+originalcode_gloss2:
+push 000084C1
+ //call glActiveTexture
+
+exit_gloss2:
+jmp returnhere_gloss2
+
+"subrosa.exe"+9D61C:
+jmp newmem_gloss2
+returnhere_gloss2:
+}
+
+
+//==================================================
+
+
+alloc(newmem_ui_uniforms,1024)
+label(returnhere_ui_uniforms)
+label(originalcode_ui_uniforms)
+label(exit_ui_uniforms)
+
+newmem_ui_uniforms:
+call glUseProgram
+
+{push 22906546
+push [shader_ui]
+call glGetUniformLocation}
+
+push [subrosa.exe+9029428]
+fild [esp]
+fstp [esp]
+push 1
+call glUniform1f
+
+originalcode_ui_uniforms:
+//call dword ptr [subrosa.exe+A98445C]
+
+exit_ui_uniforms:
+jmp returnhere_ui_uniforms
+
+"subrosa.exe"+AA63:
+jmp newmem_ui_uniforms
+nop
+returnhere_ui_uniforms:
+
+
+
+
+
+alloc(newmem_objtex,1024)
+label(returnhere_objtex)
+label(originalcode_objtex)
+label(exit_objtex)
+
+newmem_objtex:
+   push ecx
+
+cmp [shadermod_loaded],1
+jne originalcode_objtex
+
+push (float)0.0
+
+{
+ecx:
+20E - car
+316 - tire
+31C - dengi
+320
+322
+345 - phone
+346 - 9mm, bandage, case
+354 - tex1
+356 - head
+}
+cmp ecx,354
+je objtex_met_skip
+cmp ecx,356
+je objtex_met_skip
+cmp ecx,316
+je objtex_met_skip
+
+  mov [esp],(float)1.0
+
+label(objtex_met_skip)
+objtex_met_skip:
+
+mov edx,[uniform_objects_metallic]
+push edx
+call glUniform1f
+
+//push ecx
+//cmp ecx,356
+//jne originalcode_objtex
+//mov [esp],1
+
+originalcode_objtex:
+    pop ecx
+push ecx
+push 00000DE1
+
+exit_objtex:
+jmp returnhere_objtex
+
+"subrosa.exe"+45417:
+jmp newmem_objtex
+nop
+returnhere_objtex:
+
+
+
+
+//----- triggered by F6 -----------------------------------
+
+alloc(newmem_trigger,1024)
+label(returnhere_trigger)
+label(originalcode_trigger)
+label(exit_trigger)
+
+newmem_trigger:
+cmp [keys_now+3F],bl
+je originalcode_trigger
+cmp [keys_last+3F],bl
+jne originalcode_trigger
+
+pushad
+
+call compileShaders
+
+popad
+
+originalcode_trigger:
+cmp [subrosa.exe+8C6899D],bl
+
+exit_trigger:
+jmp returnhere_trigger
+
+"subrosa.exe"+B3820:
+jmp newmem_trigger
+nop
+returnhere_trigger:
+
+
+{$lua}
+
+mydata = 0
+status = 0
+
+--------  utils   ------------------------------------------
+
+function string:split(sep)
+   local sep, fields = sep or ":", {}
+   local pattern = string.format("([^%s]+)", sep)
+   self:gsub(pattern, function(c) fields[#fields+1] = c end)
+   return fields
+end
+
+function readFile(path)
+   file = io.open(path)
+   local s = file:read("*all")
+   file:close()
+   return s
+end
+
+function writeString0(address, str)
+    writeString(address,str)
+    writeBytes(address+string.len(str),0)
+end
+
+--https://stackoverflow.com/a/9102300
+getPath=function(str,sep)sep=sep or'\\'return str:match("(.*"..sep..")")end
+
+currentdir = getPath(readString("OpenAL32.dll+192D8",256))
+
+-- json.lua Copyright (c) 2018 rxi
+-- https://github.com/rxi/json.lua
+local a={_version="0.1.0"}local b;local c={["\\"]="\\\\",["\""]="\\\"",["\b"]="\\b",["\f"]="\\f",["\n"]="\\n",["\r"]="\\r",["\t"]="\\t"}local d={["\\/"]="/"}for e,f in pairs(c)do d[f]=e end;local function g(h)return c[h]or string.format("\\u%04x",h:byte())end;local function i(j)return"null"end;local function k(j,l)local m={}l=l or{}if l[j]then error("circular reference")end;l[j]=true;if j[1]~=nil or next(j)==nil then local n=0;for e in pairs(j)do if type(e)~="number"then error("invalid table: mixed or invalid key types")end;n=n+1 end;if n~=#j then error("invalid table: sparse array")end;for o,f in ipairs(j)do table.insert(m,b(f,l))end;l[j]=nil;return"["..table.concat(m,",").."]"else for e,f in pairs(j)do if type(e)~="string"then error("invalid table: mixed or invalid key types")end;table.insert(m,b(e,l)..":"..b(f,l))end;l[j]=nil;return"{"..table.concat(m,",").."}"end end;local function p(j)return'"'..j:gsub('[%z\1-\31\\"]',g)..'"'end;local function q(j)if j~=j or j&lt;=-math.huge or j&gt;=math.huge then error("unexpected number value '"..tostring(j).."'")end;return string.format("%.14g",j)end;local r={["nil"]=i,["table"]=k,["string"]=p,["number"]=q,["boolean"]=tostring}b=function(j,l)local s=type(j)local t=r[s]if t then return t(j,l)end;error("unexpected type '"..s.."'")end;function a.encode(j)return b(j)end;local u;local function v(...)local m={}for o=1,select("#",...)do m[select(o,...)]=true end;return m end;local w=v(" ","\t","\r","\n")local x=v(" ","\t","\r","\n","]","}",",")local y=v("\\","/",'"',"b","f","n","r","t","u")local z=v("true","false","null")local A={["true"]=true,["false"]=false,["null"]=nil}local function B(C,D,E,F)for o=D,#C do if E[C:sub(o,o)]~=F then return o end end;return#C+1 end;local function G(C,D,H)local I=1;local J=1;for o=1,D-1 do J=J+1;if C:sub(o,o)=="\n"then I=I+1;J=1 end end;error(string.format("%s at line %d col %d",H,I,J))end;local function K(n)local t=math.floor;if n&lt;=0x7f then return string.char(n)elseif n&lt;=0x7ff then return string.char(t(n/64)+192,n%64+128)elseif n&lt;=0xffff then return string.char(t(n/4096)+224,t(n%4096/64)+128,n%64+128)elseif n&lt;=0x10ffff then return string.char(t(n/262144)+240,t(n%262144/4096)+128,t(n%4096/64)+128,n%64+128)end;error(string.format("invalid unicode codepoint '%x'",n))end;local function L(M)local N=tonumber(M:sub(3,6),16)local O=tonumber(M:sub(9,12),16)if O then return K((N-0xd800)*0x400+O-0xdc00+0x10000)else return K(N)end end;local function P(C,o)local Q=false;local R=false;local S=false;local T;for U=o+1,#C do local V=C:byte(U)if V&lt;32 then G(C,U,"control character in string")end;if T==92 then if V==117 then local W=C:sub(U+1,U+5)if not W:find("%x%x%x%x")then G(C,U,"invalid unicode escape in string")end;if W:find("^[dD][89aAbB]")then R=true else Q=true end else local h=string.char(V)if not y[h]then G(C,U,"invalid escape char '"..h.."' in string")end;S=true end;T=nil elseif V==34 then local M=C:sub(o+1,U-1)if R then M=M:gsub("\\u[dD][89aAbB]..\\u....",L)end;if Q then M=M:gsub("\\u....",L)end;if S then M=M:gsub("\\.",d)end;return M,U+1 else T=V end end;G(C,o,"expected closing quote for string")end;local function X(C,o)local V=B(C,o,x)local M=C:sub(o,V-1)local n=tonumber(M)if not n then G(C,o,"invalid number '"..M.."'")end;return n,V end;local function Y(C,o)local V=B(C,o,x)local Z=C:sub(o,V-1)if not z[Z]then G(C,o,"invalid literal '"..Z.."'")end;return A[Z],V end;local function _(C,o)local m={}local n=1;o=o+1;while 1 do local V;o=B(C,o,w,true)if C:sub(o,o)=="]"then o=o+1;break end;V,o=u(C,o)m[n]=V;n=n+1;o=B(C,o,w,true)local a0=C:sub(o,o)o=o+1;if a0=="]"then break end;if a0~=","then G(C,o,"expected ']' or ','")end end;return m,o end;local function a1(C,o)local m={}o=o+1;while 1 do local a2,j;o=B(C,o,w,true)if C:sub(o,o)=="}"then o=o+1;break end;if C:sub(o,o)~='"'then G(C,o,"expected string for key")end;a2,o=u(C,o)o=B(C,o,w,true)if C:sub(o,o)~=":"then G(C,o,"expected ':' after key")end;o=B(C,o+1,w,true)j,o=u(C,o)m[a2]=j;o=B(C,o,w,true)local a0=C:sub(o,o)o=o+1;if a0=="}"then break end;if a0~=","then G(C,o,"expected '}' or ','")end end;return m,o end;local a3={['"']=P,["0"]=X,["1"]=X,["2"]=X,["3"]=X,["4"]=X,["5"]=X,["6"]=X,["7"]=X,["8"]=X,["9"]=X,["-"]=X,["t"]=Y,["f"]=Y,["n"]=Y,["["]=_,["{"]=a1}u=function(C,D)local a0=C:sub(D,D)local t=a3[a0]if t then return t(C,D)end;G(C,D,"unexpected character '"..a0 .."'")end;function a.decode(C)if type(C)~="string"then error("expected argument of type string, got "..type(C))end;local m,D=u(C,B(C,1,w,true))D=B(C,D,w,true)if D&lt;=#C then G(C,D,"trailing garbage")end;return m end; json = a
+
+------- configuration file ----------------------------------------
+
+current_pack = ""
+pack_dir = ""
+pack_config = {}
+step = 0
+shaders_i = nil
+shaders_i_last = nil
+textures_i = nil
+textures_i_last = nil
+
+shader_max = 16384
+
+function findTex(name)
+    --if name[1] == '+' then --пиздец а не язык, если честно
+    if string.sub(name,1,1) == '+' then
+      return tonumber(name)
+    end
+   texdef0 = getAddress("subrosa.exe+2480A8F8")
+   texdef_size = 88
+   texdef_cap = 248
+     for i = 16,texdef_cap do
+         if readString(texdef0+texdef_size*i) == name then
+            --print("yep! "..i)
+            return i
+         end
+     end
+end
+
+function init()
+
+     mydata = getAddress("tmpdata")
+     status = getAddress("shadermod_status")
+
+     current_pack = readFile(currentdir.."shaders/current.txt")
+
+     pack_dir = currentdir.."shaders/"..current_pack
+
+     pack_config = json.decode( readFile(pack_dir.."/pack.txt") )
+
+     step = 0
+
+     shaders_i = pairs(pack_config["shaders"])
+     textures_i = pairs(pack_config["textures"])
+
+     --[[tf = io.open(pack_dir.."/sky.fs","w")
+     tf:write( readString("01228DE0", 8000) )
+     tf:close()]]--
+end
+
+function next()
+
+ if step == 0 then
+
+   id, shader = shaders_i(pack_config["shaders"],shaders_i_last)
+  -- print(id)
+   if id == nil or id == shaders_i_last then
+      shaders_i_last = nil
+      step = 1
+      --writeInteger(mydata,2)
+      --return
+   end
+   shaders_i_last = id
+   if step == 0 then
+
+       local offset = 16
+         if shader["vs"] then
+            writeInteger(mydata+offset,1)
+            writeString0(mydata+offset+8, readFile(pack_dir.."/"..shader["vs"]) )
+         end
+       offset = offset + shader_max
+         if shader["fs"] then
+            writeInteger(mydata+offset,1)
+            writeString0(mydata+offset+8, readFile(pack_dir.."/"..shader["fs"]) )
+         end
+       offset = offset + shader_max
+         if shader["gs"] then
+            writeInteger(mydata+offset,1)
+            writeString0(mydata+offset+8, readFile(pack_dir.."/"..shader["gs"]) )
+         end
+       writeInteger(mydata, 1)
+       writeInteger(mydata+4, getAddress("shader_"..id))
+   end
+ end
+ if step == 1 then
+   id, tex = textures_i(pack_config["textures"],textures_i_last)
+   if id == nil or id == textures_i_last then
+      textures_i_last = nil
+      step = 0
+      writeInteger(mydata,0)
+
+      if pack_config["copy-sec"] then
+         for id, dsts in pairs(pack_config["copy-sec"]) do
+           src = findTex(id)
+           src_t1 = readInteger(status+256+src*8)
+           src_t2 = readInteger(status+256+src*8+4)
+           for i, dst in ipairs(dsts) do
+             dst_id = findTex(dst)
+               writeInteger(status+256+dst_id*8,   src_t1)
+               writeInteger(status+256+dst_id*8+4, src_t2)
+               --print("yepp!"..dst.." "..src_t)
+           end
+         end
+      end
+
+      return
+   end
+   textures_i_last = id
+
+   tid = findTex(id)
+   writeInteger(mydata+8,tid)
+
+
+   writeInteger(mydata, 2)
+     writeString0(mydata+16,id)
+   writeInteger(mydata+4,#tex - 1)
+   for i,tex_p in ipairs(tex) do
+     address = mydata+64+256*(i-1)
+      if tex[i]=="" then
+         writeBytes(address,0)
+      else
+         writeString0(address,pack_dir.."/textures/"..tex[i])
+      end
+   end
+--[[   writeInteger(mydata, 2)
+   writeString0(mydata+16,id)
+   writeString0(mydata+64,pack_dir.."/textures/"..tex[1])
+   if #tex &gt; 1 then
+      writeInteger(mydata+4,1)
+      writeString0(mydata+196, pack_dir.."/textures/"..tex[2])
+   else
+      writeInteger(mydata+4,0)
+   end
+]]--
+
+ end
+
+end
+
+{$asm}
+
+
+[DISABLE]
+dealloc(newmem_objtex)
+"subrosa.exe"+45417:
+push edi
+push 00000DE1
+//Alt: db 57 68 E1 0D 00 00
+
+{dealloc(newmem_gloss2)
+"subrosa.exe"+9D61C:
+push 000084C1
+//Alt: db 68 C1 84 00 00}
+
+dealloc(newmem_ui_uniforms)
+"subrosa.exe"+AA63:
+call dword ptr [subrosa.exe+A98445C]
+//Alt: db FF 15 5C 44 D5 0B
+
+{dealloc(newmem4)
+"subrosa.exe"+45AAB:
+call dword ptr [subrosa.exe+C8BEC98]
+//Alt: db FF 15 98 EC C2 0D}
+
+dealloc(newmem_gloss1)
+"subrosa.exe"+45B87:
+push edx
+push 00000DE1
+//Alt: db 52 68 E1 0D 00 00
+
+dealloc(newmem_trigger)
+"subrosa.exe"+B3820:
+cmp [subrosa.exe+8C6899D],bl
+//Alt: db 38 1D 9D 89 89 09
+
+dealloc(shadermod_status)
+dealloc(tmpdata)
+dealloc(celua_name)
+dealloc(myluafunc_init)
+dealloc(myluafunc_next)
+dealloc(loadconfigfile)
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>game = "subrosa.exe"
+
+ if (not openProcess(game)) then
+  showMessage("Couldn't find a running "..game.." process!")
+ end
+
+local addressList = getAddressList()
+addressList.getMemoryRecordByDescription('shadermod').Active = true
+
+--closeCE()
+</LuaScript>
+</CheatTable>
