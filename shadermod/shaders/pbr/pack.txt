@@ -32,7 +32,7 @@
 	"parking-concrete2": ["", "parking-concrete2_NRM.png", "Ash_pbr.png"],
 	"bc_wood03": ["", "bc_wood03_NRM.png", "Oak_pbr.png"],
 	"bc_brickhatch03": ["","bc_brickhatch03_NRM.png","OxidizedCopper_pbr.png"],
-	"bc_brickhatch01": ["","bc_brickhatch01_NRM.png","OxidizedCopper_pbr.png"],
+	"bc_brickhatch01": ["","bc_brickhatch01.png","OxidizedCopper_pbr.png"],
 	"bc_carpet01": ["","OrangeGranite_NRM.png","OrangeGranite_pbr.png"]
   },
   "copy-sec": {
