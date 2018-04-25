@@ -24,7 +24,9 @@
 	"bc_brick01_windows00": ["", "bc_brick01_windows00_NRM.png", "bc_brick01_windows00_pbr.png"],
 	"bc_brick01_windows01": ["", "bc_brick01_windows01_NRM.png", "bc_brick01_windows01_pbr.png"],
 	"bc_brick01_windows02": ["", "bc_brick01_windows02_NRM.png", "bc_brick01_windows02_pbr.png"],
+	"bc_brick02_basesign": ["", "bc_brick01_basesign_NRM.png", "bc_brick01_basesign_pbr.png"],
 	"bc_brick04": ["", "bc_brick04_NRM.png", "bc_brick04_pbr.png"],
+	"bc_brick11": ["", "bc_brick11_NRM.png", "ScrapedStucco_pbr.png"],
 	"bc_sign_01": ["", "Copper_NRM.png", "Copper_pbr.png"],
 	"bc_container_front_red": ["", "Iron_NRM.png", "Iron_pbr.png"],
 	"bc_grass01": ["ForestDirt_DIF.png", "ForestDirt_NRM.png", "ForestDirt_pbr.png"],
@@ -37,17 +39,17 @@
   },
   "copy-sec": {
 	"+1": ["+2","+3","+4","+5","+6","+7", "+11","+12","+13","+14", "bc_parking_exit1","bc_parking_exit2","bc_parking_nopark","bc_parkingspot","bc_parkingspot02","bc_ramp","bc_ramp02", "concrete","blackroof"],
-	"bc_brick01": ["bc_brick02",  "bc_brick02_basesign",  "bc_brick02_purple","bc_brick03","bc_brick05","bc_brick05_stripe","bc_brick06",  "bc_brick06_edgeleft","bc_brick06_edgeright",  "bc_brick06_museum1","bc_brick06_museum2","bc_brick08","bc_brick08_sunglass1","bc_brick08_sunglass2","bc_brick08-a","bc_brick09","bc_brick10","bc_brick10-a","bc_parksign01","brickwall02"],
+	"bc_brick01": ["bc_brick02",  "bc_brick02_purple","bc_brick03","bc_brick05","bc_brick05_stripe","bc_brick06",  "bc_brick06_edgeleft","bc_brick06_edgeright",  "bc_brick06_museum1","bc_brick06_museum2","bc_brick08","bc_brick08_sunglass1","bc_brick08_sunglass2","bc_brick08-a","bc_brick09","bc_brick10","bc_brick10-a","bc_parksign01","brickwall02"],
 	"bc_brick01_windows00": ["bc_brick01_windows00-gold"],
 	"bc_brick01_windows01": ["bc_brick01_windows01-gold"],
 	"bc_brick01_windows02": ["bc_brick01_windows02-gold"],
 	"bc_brick04": ["bc_brick07", "bc_brick15"],
-	"bc_sign_01": ["bc_billboards01","bc_sign_02","bc_sign_cilantro","bc_theater_m","bc_tile09","bc_tile02"],
-	"bc_container_front_red": ["bc_container_side_black", "bc_container_side_brown", "bc_container_side_green", "bc_container_side_grey", "bc_container_side_red", "bc_garage"],
+	"bc_sign_01": ["bc_billboards01","bc_sign_02","bc_sign_cilantro","bc_theater_m","bc_tile09","bc_tile02", "bc_kitchen"],
+	"bc_container_front_red": ["bc_container_side_black", "bc_container_side_brown", "bc_container_side_green", "bc_container_side_grey", "bc_container_side_red"],
 	"parking-arrow1_03": ["parking-arrow1_01", "parking-arrow1_02", "parking-arrow1_06", "parking-arrow2_01", "parking-arrow2_02", "parking-arrow2_03", "parking-arrow2_05", "parking-line1", "parking-line2", "parking-line3", "parking-concrete1", "parking-line4"],
 	"bc_grass01": ["bc_footballpitch01","bc_basketballcourt"],
 	"bc_wood03": ["bc_wood03_beam", "bc_wood03_warehousesign1", "bc_wood03_warehousesign2", "bc_wood04", "bc_wood04_beam"],
 	"bc_brickhatch03": ["bc_brickhatch02"],
-	"bc_carpet01": ["bc_carpet02","bc_carpet03","bc_carpet04","bc_carpet05"]
+	"bc_carpet01": ["bc_carpet02","bc_carpet03","bc_carpet04","bc_carpet05", "bc_tile05","bc_tile06","bc_tile07"]
   }
 }

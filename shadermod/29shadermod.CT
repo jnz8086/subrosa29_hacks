@@ -136,15 +136,6 @@ alloc(tmpdata,65536)
 registersymbol(tmpdata)
 
 
-{
-subrosa.exe+9D9A8 - A1 48E4B422           - mov eax,[subrosa.exe+219EE448] // [00000209]
-subrosa.exe+9D9AD - 6B C0 70              - imul eax,eax,70
-subrosa.exe+9D9B0 - 8B 88 EC2DE729        - mov ecx,[eax+subrosa.exe+28D12DEC]
-subrosa.exe+9D9B6 - 51                    - push ecx
-subrosa.exe+9D9B7 - 68 13850000           - push 00008513 // 34067
-subrosa.exe+9D9BC - FF 15 98ECA10D        - call dword ptr [subrosa.exe+C8BEC98] //-&gt;OPENGL32.glBindTexture
-}
-
 
 //--------------------------------------------------------
 
@@ -859,7 +850,6 @@ registersymbol(compileShaders)
 
 //------ custom secondary textures -------------------------
 
-
 alloc(newmem_gloss1,2048)
 label(returnhere_gloss1)
 label(originalcode_gloss1)
@@ -909,8 +899,6 @@ returnhere_gloss1:
 
 
 
-
-{
 alloc(newmem_gloss2,1024)
 label(returnhere_gloss2)
 label(originalcode_gloss2)
@@ -918,21 +906,40 @@ label(exit_gloss2)
 
 newmem_gloss2:
 
-push 0//[shadermod_sectable+ebp*sectable_s]
+pushad
+
+push [shadermod_sectable+edx*sectable_s]
 push 00000DE1
 call glBindTexture
+push GL_TEXTURE0+4
+call glActiveTexture
+
+mov edx,[esp+14]
+
+push [shadermod_sectable+edx*sectable_s+4]
+push 00000DE1
+call glBindTexture
+push GL_TEXTURE0
+call glActiveTexture
+
+popad
 
 originalcode_gloss2:
-push 000084C1
- //call glActiveTexture
+imul edx,edx,70
+mov eax,[edx+subrosa.exe+28D12DEC]
 
 exit_gloss2:
 jmp returnhere_gloss2
 
-"subrosa.exe"+9D61C:
+"subrosa.exe"+46AE8:
 jmp newmem_gloss2
+nop
+nop
+nop
+nop
 returnhere_gloss2:
-}
+
+
 
 
 //==================================================
@@ -1242,16 +1249,17 @@ end
 
 
 [DISABLE]
+dealloc(newmem_gloss2)
+"subrosa.exe"+46AE8:
+imul edx,edx,70
+mov eax,[edx+subrosa.exe+28D12DEC]
+//Alt: db 6B D2 70 8B 82 EC 2D CC 29
+
 dealloc(newmem_objtex)
 "subrosa.exe"+45417:
 push edi
 push 00000DE1
 //Alt: db 57 68 E1 0D 00 00
-
-{dealloc(newmem_gloss2)
-"subrosa.exe"+9D61C:
-push 000084C1
-//Alt: db 68 C1 84 00 00}
 
 dealloc(newmem_ui_uniforms)
 "subrosa.exe"+AA63:
